@@ -158,7 +158,7 @@ if (isset($_SESSION['managername'])) {
 		</div>
 			<div class="form-item">
 			
-				<input type="submit" name="emploglsin" class="login pull-right" value="Log In">
+				<input type="submit" name="emplogin" class="login pull-right" value="Log In">
 				<div class="clear-fix"></div>
 			</div>
 		</form>	

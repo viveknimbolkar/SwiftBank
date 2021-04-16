@@ -1,8 +1,6 @@
 <?php
 
 require("connection.php");
-require("helpme.php");
-checkLogin();
 
 #authenticate manager
 if (isset($_POST['managerlogin'])) {
@@ -48,7 +46,7 @@ if (isset($_POST['managerlogin'])) {
 
   #authenticate employee
 if (isset($_POST['emplogin'])) {
-
+  
     //verify the bot
     $secret = '6LdJ7KsaAAAAAAmsa2JFRrUcwFLp91SyucVvxzB3';
     $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
