@@ -1,0 +1,1 @@
+./lampp stop
