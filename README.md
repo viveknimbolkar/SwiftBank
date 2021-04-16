@@ -1,7 +1,7 @@
 # Swift Bank
 ## The free and open source bank management system
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/viveknimbolkar/SwiftBank)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://www.youtube.com/c/Technovik)
 
 This is my first php project. You can make changes and make a good working BMS. I found that lot's of new bank have the problem. They don't have a good working management system. So together we will make them help. 
 
@@ -25,5 +25,5 @@ And that's it guys!
 You are ready to go.
 
 #### Note
-All the *.sh files are only use to start localserver on linux based local system
+All the *.sh files are only use to start localserver on linux based local system.
 You may delete this after push.
