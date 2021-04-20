@@ -1,32 +1,45 @@
 <?php
 
-    require("../backend/helpme.php");
+    require_once("../backend/helpme.php");
     checkLogin();
     
-    require("../backend/connection.php");
+    require_once("../backend/connection.php");
 
     #customer added by employee
     if (isset($_POST['addcustomer'])) {
 
-        $timestamp = date("Y-m-d");
-        echo $timestamp;
+        //get the post values in secure format
+        $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
+        $fathername = mysqli_real_escape_string($conn,$_POST['fathername']);
+        $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
+        $email = mysqli_real_escape_string($conn,$_POST['emailaddress']);
+        $mobile = mysqli_real_escape_string($conn,$_POST['mobileno']);
+        $account_no = mysqli_real_escape_string($conn,$_POST['accountno']);
+        $aadhar_no = mysqli_real_escape_string($conn,$_POST['aadharno']);
+        $address = mysqli_real_escape_string($conn,$_POST['address']);
+        $city = mysqli_real_escape_string($conn,$_POST['city']);
+        $taluka = mysqli_real_escape_string($conn,$_POST['taluka']);
+        $district = mysqli_real_escape_string($conn,$_POST['district']);
+        $state = mysqli_real_escape_string($conn,$_POST['state']);
+        $dob = mysqli_real_escape_string($conn,$_POST['dob']);
+        $balance = mysqli_real_escape_string($conn,$_POST['balance']);
+        $pincode = mysqli_real_escape_string($conn,$_POST['pincode']);
+        #$customer_image = mysqli_real_escape_string($conn,$_POST['customer']);
+        $gender = mysqli_real_escape_string($conn,$_POST['flexRadioDefault']);
         
-        $query = "INSERT INTO `customerdata` (`first_name`, `father_name`, `last_name`, `email_address`, `mobile_no`, `account_no`, `aadhar_no`, `address`, `city`, `taluka`, `district`, `state`, `dob`, `balance`, `pincode`, `customer_img`, `gender`, `timestamp`) VALUES ('$_POST[firstname]', '$_POST[fathername]', '$_POST[lastname]', '$_POST[emailaddress]', '$_POST[mobileno]', '$_POST[accountno]', '$_POST[aadharno]', '$_POST[address]', '$_POST[city]', '$_POST[taluka]', '$_POST[district]', '$_POST[state]', '$_POST[dob]', '$_POST[balance]', '$_POST[pincode]', '','$_POST[flexRadioDefault]','$timestamp')";
+        //set the timezone to asia kolkata
+        date_default_timezone_set('Asia/Kolkata');
+        $timestamp = date("Y-m-d h:i:s");
+        #echo $timestamp;
+        
+        $query = "INSERT INTO `customerdata` (`first_name`, `fathername`, `last_name`, `email_address`, `mobile_no`, `account_no`, `aadhar_no`, `address`, `city`, `taluka`, `district`, `state`, `dob`, `balance`, `pincode`,`gender`, `timestamp`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$mobile', '$account_no', '$aadhar_no', '$address', '$city', '$taluka', '$district', '$state', '$dob', '$balance', '$pincode', '$gender', '$timestamp')";
         
        $result = mysqli_query($conn,$query);
 
-       echo mysqli_error($conn);
+       #echo mysqli_error($conn);
 
+       //if the data inserted successfully
         if ($result) {
-
-            /*if ($_SESSION['empfname']) {
-                redirect to employee dashboard
-                header("Location: ../employee/employee-dashboard.php");
-            }
-            if ($_SESSION['managername']) {
-                //redirect to manager dashboard
-                header("Location: ../manager/manager-dashboard.php");
-             }*/
 
              ?>
                <!--html is here -->
@@ -142,32 +155,11 @@
             
         }else{
 
-            echo "Record is not Added!";
+            echo "<script> alert('Record is not added! Try again'); </script>";
+            redirectPage(); #redirect to the respected user dashboard
 
         }#end of success query completion
 
-
     }#end of addcustomer submit
-
-
-    /*
-#customer adding by manager
-   if (isset($_POST['manageraddcustomer'])) {
-        
-        $query = "INSERT INTO `customerdata` (`first_name`, `father_name`, `last_name`, `mobile_no`, `aadhar_no`, `dob`, `email_address`, `account_no`, `city`, `taluka`, `district`, `state`, `address`, `pincode`) VALUES ('$_POST[firstname]', '$_POST[fathername]', '$_POST[lastname]', '$_POST[mobileno]', '$_POST[aadharno]', '$_POST[dob]', '$_POST[emailaddress]', '$_POST[accountno]', '$_POST[city]', '$_POST[taluka]', '$_POST[district]', '$_POST[state]', '$_POST[address]', '$_POST[pincode]')" OR die("Query 2 error");
-        
-        $result = mysqli_query($conn,$query) or die("result 2 error");
-
-        if ($result) {
-            header("Location: ../employee/employee-dashboard.php");
-        }else{
-            echo "Can't add!";
-        }
-    
-    }*/
-
-
-
-
 
 ?>

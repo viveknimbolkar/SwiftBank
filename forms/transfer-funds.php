@@ -8,12 +8,13 @@ require("../backend/connection.php");
 
 if (isset($_POST['transferfund'])) {
     
-    $from_account_num = $_POST['fromaccount'];
-    $to_account_num = $_POST['toaccount'];
-    $transfer_amount = $_POST['amount'];
+    //get the account numbers and amount
+    $from_account_num = mysqli_real_escape_string($conn,$_POST['fromaccount']);
+    $to_account_num = mysqli_real_escape_string($conn,$_POST['toaccount']);
+    $transfer_amount = mysqli_real_escape_string($conn,$_POST['amount']);
 
 //search for account existance and balance
-    $search = "SELECT * FROM `customerdata` WHERE account_no='$from_account_num' LIMIT 1";
+    $search = "SELECT `account_no` FROM `customerdata` WHERE account_no='$from_account_num' LIMIT 1";
 
     $search_result = mysqli_query($conn,$search);
 
@@ -31,25 +32,8 @@ if (isset($_POST['transferfund'])) {
             echo "<script> alert('Insufficient Balance!'); </script>";
             redirectPage();
 
-            /*
-            //REDIRECT TO THE RESPECTED DASHBOARD IS SESSION ARE SET
-            if (isset($_SESSION['managername'])) {
-                #REDIRECT TO manager DASHBOARD
-                echo "<script>
-                        window.location.href='../manager/manager-dashboard.php';
-                    </script>";
-                
-            }elseif (isset($_SESSION['empfname'])) {
-                #REDIRECT TO employee DASHBOARD
-                echo "<script>
-                        window.location.href='../employee/employee-dashboard.php';
-                    </script>";
-                
-            }*/
-            
         }else {
             #Send if sufficient money is present
-            #echo "<br>Transferred";
 
             $find_to_account = "SELECT * FROM `customerdata` WHERE account_no='$to_account_num' LIMIT 1"; 
             
@@ -63,20 +47,21 @@ if (isset($_POST['transferfund'])) {
                 #adding money
                 $total_amount_after_add = $to_result['balance'] + $transfer_amount;
 
-                #echo "<br>total amount $total_amount_after_add";
                  #funds are added query
                  $add_fund = "UPDATE customerdata SET balance='$total_amount_after_add' WHERE account_no='$to_account_num'";
-                 #echo "<br>".$add_fund;
+                 
                  $done_adding_fund = mysqli_query($conn,$add_fund);
 
                 #subtracting money
                 $total_amount_after_subtract = $result['balance'] - $transfer_amount;
+                
                 #funds are subtracted query
                 $subtract_fund = "UPDATE customerdata SET balance='$total_amount_after_subtract' WHERE account_no='$from_account_num'";
-                #echo "<br>".$subtract_fund;
+                
                 $done_subtracting_fund = mysqli_query($conn,$subtract_fund);
 
                 //ADD RECORD TO THE TRANSACTION HISTORY TABLE
+                date_default_timezone_set('Asia/Kolkata');
                 $current_time = date("Y-m-d");
                 
                 $add_trans_record = "INSERT INTO `transaction_history` (`from_account`, `to_account`, `transfer_amount`, `date`) VALUES ('$from_account_num', '$to_account_num', '$transfer_amount', '$current_time')";
@@ -89,63 +74,23 @@ if (isset($_POST['transferfund'])) {
 
                     echo "<script> alert('Fund Transfered Successfully!'); </script>";
 
-                    redirectPage();
                     //REDIRECT TO THE RESPECTED DASHBOARD IS SESSION ARE SET
-                    /*if (isset($_SESSION['managername'])) {
-                        #REDIRECT TO manager DASHBOARD
-                        echo "<script>
-                                window.location.href='../manager/manager-dashboard.php';
-                              </script>";
-                        
-                    }elseif (isset($_SESSION['empfname'])) {
-                        #REDIRECT TO employee DASHBOARD
-                        echo "<script>
-                                window.location.href='../employee/employee-dashboard.php';
-                             </script>";
-                        
-                    }*/
-                   
-
+                    redirectPage();
+                    
                 }else{
                     echo "<script>alert('Fund Transfered Failed!');</script>";
                     redirectPage();
                 }
             }
-            
-
         }
 
-    }else{#if account is not found
-
+    }else{
+        #if account is not found
         echo "<script>alert('Customer Not Found!');</script>";
         redirectPage();
     }
 
 }//end of submit button
-
-
-
-
-//REDIRECT FUNCTION FOR EMPLOYEE AND MANAGER
-//tHIS IS SPECIALLY MADE FOR SECURITY PURPOSE
-/*
-function redirectPage(){
-    
-    if (isset($_SESSION['empfname'])) {
-        echo "<script> window.location.href='../employee/employee-dashboard.php'; </script>";
-    }elseif (isset($_SESSION['managername'])) {
-        echo "<script> window.location.href='../manager/manager-dashboard.php'; </script>";
-    }
-}*/
-
-
-
-
-
-
-
-
-
 
 
 ?>

@@ -1,14 +1,10 @@
 <?php
 
-require("../backend/helpme.php");
+require_once("../backend/helpme.php");
 checkLogin();
 
-  require("../backend/connection.php");
-  /*
-  session_start();
-  if (!isset($_SESSION['managername'])) {
-    header("Location: ../index.php");
-  }*/
+  require_once("../backend/connection.php");
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,9 +88,6 @@ checkLogin();
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                  
-                    
-                    
                     
                       <tr>
                         <th scope="row"><?php echo $i++ ;  ?></th>

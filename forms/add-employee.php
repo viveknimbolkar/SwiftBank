@@ -9,8 +9,43 @@
     require("../backend/connection.php");
 
     if (isset($_POST['addemp'])) {
-        
-        $query = "INSERT INTO `employeedata` (`first_name`, `father_name`, `last_name`, `email_address`, `mobile_no`, `emp_id`, `dob`, `aadhar_no`, `qualification`, `address`, `city`, `taluka`, `district`, `state`,`pass`) VALUES ('$_POST[firstname]', '$_POST[fathername]', '$_POST[lastname]', '$_POST[emailaddr]', '$_POST[mobileno]', '$_POST[empid]', '$_POST[dob]', '$_POST[aadharno]', '$_POST[qualification]', '$_POST[address]', '$_POST[city]', '$_POST[taluka]', '$_POST[district]', '$_POST[state]','$_POST[pwd2]')";
+
+        //store all the variables securely
+        $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
+        $fathername = mysqli_real_escape_string($conn,$_POST['fathername']);
+        $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
+        $email = mysqli_real_escape_string($conn,$_POST['emailaddr']);
+        $mobile = mysqli_real_escape_string($conn,$_POST['mobileno']);
+        $employee_id = mysqli_real_escape_string($conn,$_POST['empid']);
+        $dob = mysqli_real_escape_string($conn,$_POST['dob']);
+        $aadhar_no = mysqli_real_escape_string($conn,$_POST['aadharno']);
+        $qualification = mysqli_real_escape_string($conn,$_POST['qualification']);
+        $address = mysqli_real_escape_string($conn,$_POST['address']);
+        $city = mysqli_real_escape_string($conn,$_POST['city']);
+        $taluka = mysqli_real_escape_string($conn,$_POST['taluka']);
+        $district = mysqli_real_escape_string($conn,$_POST['district']);
+        $state = mysqli_real_escape_string($conn,$_POST['state']);
+        $pass = mysqli_real_escape_string($conn,$_POST['pwd1']);
+        $cpass = mysqli_real_escape_string($conn,$_POST['pwd2']);
+       
+        //password validation
+        if ($pass != $cpass) {
+            #if password dosen't match
+            echo "<script> 
+                    alert('Password dose not match!');
+                    window.location.href='../manager/manager-dashboard.php';
+                  </script>";
+        }else {
+            
+        //if password matched successfuly then create a secure password hash and insert data into database
+
+        $password = password_hash($cpass,PASSWORD_BCRYPT);
+
+        //current time
+        date_default_timezone_set("Asia/Kolkata");
+        $current_time = date('Y-m-d h:i:s');
+
+        $query = "INSERT INTO `employeedata` (`first_name`, `father_name`, `last_name`, `email_address`, `pass`, `mobile_no`, `aadhar_no`, `emp_id`, `dob`, `qualification`, `address`, `city`, `taluka`, `district`, `state`,`time`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$password', '$mobile', '$aadhar_no', '$employee_id', '$dob', '$qualification', '$address', '$city', '$taluka', '$district', '$state','$current_time')";
         
         $result = mysqli_query($conn,$query);
 
@@ -115,17 +150,15 @@
 </html>
 
            <?php
+        
         }else{
-            echo "Something Went Wrong! Please Try Again.";
-        }
+            echo "<script> alert('Something Went Wrong! Please Try Again.'); </script>";
+        }#end of conenction (result)  error
+
+        #echo mysqli_error($conn);
     
-    }
+    }#end of password check
 
-
-
-
-
-
-
+    }#end of isset
 
 ?>

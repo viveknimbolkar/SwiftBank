@@ -7,12 +7,14 @@ if (!isset($_SESSION['empfname'])) {
     header("Location: ../index.php");
 }
 
-require("../backend/connection.php");
+require_once("../backend/connection.php");
 
 if (isset($_POST['debitfund'])) {
 
+    $account_no = mysqli_real_escape_string($conn,$_POST['acnum']);
+
    //find the customer
-    $sql_query = "SELECT * FROM customerdata WHERE account_no='$_POST[acnum]' LIMIT 1";
+    $sql_query = "SELECT `account_no` FROM customerdata WHERE account_no='$account_no' LIMIT 1";
 
     #echo $sql_query;
     #echo "<br>";
@@ -22,15 +24,10 @@ if (isset($_POST['debitfund'])) {
     //if found then get balance
     if ($result = mysqli_fetch_assoc($find)) {
 
-        #echo "$result[balance]";
-        #echo "<br>";
-
         $amount = $result['balance'] - $_POST['amount'];
         
         //update balance
-        $query = "UPDATE `customerdata` SET balance='$amount' WHERE account_no='$_POST[acnum]' LIMIT 1";
-    
-        #echo $query;
+        $query = "UPDATE `customerdata` SET balance='$amount' WHERE account_no='$account_no' LIMIT 1";
     
         $result = mysqli_query($conn,$query);
 
@@ -48,12 +45,6 @@ if (isset($_POST['debitfund'])) {
  
     }
 
-    //$query = "UPDATE `customerdata` SET balance='$_POST[amount]' WHERE account_no='$_POST[acnum]'";
-    
-    //echo $query;
-    
-    //$result = mysqli_query($conn,$query);
-   
 }
 
 

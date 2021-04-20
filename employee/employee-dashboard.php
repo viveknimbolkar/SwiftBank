@@ -129,7 +129,7 @@
                   <center class="m-4"><h3>Find Account Details</h3></center>
                             <form action="" method="post">
                                   <div class="input-group input-group-lg mb-3">
-                                      <input type="text" class="form-control" name="accountnum" placeholder="Enter Account Number" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                      <input type="number" class="form-control" name="accountnum" placeholder="Enter Account Number" aria-label="Recipient's username" aria-describedby="button-addon2">
                                       <button class="btn btn-outline-secondary" name="findcustomer" type="submit" id="button-addon2">Find Details</button>
                                   </div>
                             </form>  
@@ -137,7 +137,10 @@
                             
                                         if (isset($_POST['findcustomer'])) {
                                          
-                                           $query = "SELECT * FROM `customerdata` WHERE account_no='$_POST[accountnum]'";
+                                          //get acc no
+                                          $account_no = mysqli_real_escape_string($conn,$_POST['accountnum']);
+
+                                           $query = "SELECT `account_no` FROM `customerdata` WHERE account_no='$account_no'";
                                            $result = mysqli_query($conn,$query);
 
                                            while ($row = mysqli_fetch_assoc($result)) {
@@ -242,11 +245,11 @@
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Mobile Number</label>
-                    <input type="text" class="form-control" name="mobileno" required>
+                    <input type="number" class="form-control" name="mobileno" required>
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Aadhar Number</label>
-                    <input type="text" class="form-control" name="aadharno" required>
+                    <input type="number" class="form-control" name="aadharno" required>
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Date Of Birth</label>
@@ -254,11 +257,11 @@
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Account Number (Don't Edit)</label>
-                    <input type="text" class="form-control" value="<?php echo rand(); ?>" name="accountno">
+                    <input type="number" class="form-control" value="<?php echo rand(); ?>" name="accountno">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Account Balance</label>
-                    <input type="text" class="form-control" value="200" name="balance">
+                    <input type="number" class="form-control" value="200" name="balance">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Address</label>
@@ -278,7 +281,7 @@
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">pincode</label>
-                    <input type="text" class="form-control" name="pincode" required>
+                    <input type="number" class="form-control" name="pincode" required>
                   </div>
                   <div class="col-md-4">
                           <label for="inputEmail4" class="form-label" required>Select state</label>
@@ -340,14 +343,14 @@
                 <center><h3>Remove Customer</h3></center>
                      <form action="" method="post">
                           <div class="input-group input-group-lg mb-3">
-                                <input type="text" class="form-control" placeholder="Account Number" name="accnum" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <input type="number" class="form-control" placeholder="Account Number" name="accnum" aria-label="Recipient's username" aria-describedby="button-addon2">
                                 <button class="btn btn-outline-danger" name="removeC" type="submit" id="button-addon2">Remove Customer</button>
                           </div>
                      </form>  
                      <?php
                           if (isset($_POST['removeC'])) {
 
-
+                            
 
                               //first find the customer
                               $search_customer = "SELECT * FROM `customerdata` WHERE account_no='$_POST[accnum]' LIMIT 1";
@@ -382,13 +385,13 @@
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Account No.</span>
-                                            <input type="text" name="acnum" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="acnum" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Amount (Rs.)</span>
-                                            <input type="text" name="amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
@@ -407,13 +410,13 @@
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Account No.</span>
-                                            <input type="text" name="acnum" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="acnum" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Amount (Rs.)</span>
-                                            <input type="text" name="amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
@@ -434,18 +437,18 @@
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">From</span>
-                                            <input type="text" name="fromaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="fromaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">To</span>
-                                            <input type="text" name="toaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="toaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
-                                            <input type="text" name="amount" placeholder="Enter amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="amount" placeholder="Enter amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4"> </div>

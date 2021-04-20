@@ -1,9 +1,9 @@
 <?php
 
-require("../backend/helpme.php");
+require_once("../backend/helpme.php");
 checkLogin();
 
-  require("../backend/connection.php");
+  require_once("../backend/connection.php");
   /*session_start();
   if (!(isset($_SESSION['managername']) OR isset($_SESSION['empfname']) ) ) {
     header("Location: ../index.php");

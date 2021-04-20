@@ -154,7 +154,7 @@ if (isset($_SESSION['managername'])) {
 				<div class="pw-view"><i class="fa fa-eye"></i></div> <br>
 				<p><a href="../resetpassword/reset-password.php" ><small>Forgot Password ?</small></a></p>	
 				<div class="g-recaptcha" data-sitekey="6LdJ7KsaAAAAADktI0pN2xrxKECOVhYr7B3DKOhg"></div>
-				
+					
 		</div>
 			<div class="form-item">
 			

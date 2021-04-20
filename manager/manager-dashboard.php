@@ -6,10 +6,10 @@ if (!isset($_SESSION['managername'])) {
   header("location: ../forms/manager-login.php");
 }*/
 
-require("../backend/helpme.php");
+require_once("../backend/helpme.php");
 checkLogin();
 
-require("../backend/connection.php");
+require_once("../backend/connection.php");
 
 ?>
 <!DOCTYPE html>
@@ -119,7 +119,7 @@ require("../backend/connection.php");
                                   <center><h2>Find Account Details</h2></center>
                                   <form action="" method="post">
                                     <div class="input-group input-group-lg mb-3">
-                                      <input type="text" class="form-control" name="accountnum" placeholder="Enter Account Number" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                      <input type="number" class="form-control" name="accountnum" placeholder="Enter Account Number" aria-label="Recipient's username" aria-describedby="button-addon2">
                                       <button class="btn btn-outline-secondary" name="findcustomer" type="submit" id="button-addon2">Find Details</button>
                                     </div>
                                   </form>  
@@ -235,15 +235,15 @@ require("../backend/connection.php");
                                               </div>
                                               <div class="col-md-4">
                                                   <label for="inputEmail4" class="form-label">Aadhar Number</label>
-                                                  <input type="text" name="aadharno" class="form-control" required>
+                                                  <input type="number" name="aadharno" class="form-control" required>
                                               </div>
                                               <div class="col-md-4">
                                                   <label for="inputEmail4" class="form-label">Balance</label>
-                                                  <input type="text" name="balance" value="200" class="form-control" required>
+                                                  <input type="number" name="balance" value="200" class="form-control" required>
                                               </div>
                                               <div class="col-md-4">
                                                   <label for="inputEmail4" class="form-label">Account Number(Do not edit))</label>
-                                                  <input type="text" name="accountno"  value="<?php echo rand();  ?>" class="form-control" >
+                                                  <input type="number" name="accountno"  value="<?php echo rand();  ?>" class="form-control" >
                                               </div>
                                               <div class="col-md-4">
                                                   <label for="inputEmail4" class="form-label">Date of Birth</label>
@@ -268,7 +268,7 @@ require("../backend/connection.php");
                                               </div>
                                               <div class="col-md-4">
                                                   <label for="inputEmail4" class="form-label">Pincode</label>
-                                                  <input type="text" name="pincode"  class="form-control" required>
+                                                  <input type="number" name="pincode"  class="form-control" required>
                                               </div>
                                               <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label" required>Select state</label>
@@ -360,18 +360,18 @@ require("../backend/connection.php");
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">From</span>
-                                            <input type="text" name="fromaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="fromaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">To</span>
-                                            <input type="text" name="toaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="toaccount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
-                                            <input type="text" name="amount" placeholder="Enter amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="amount" placeholder="Enter amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4"> </div>
@@ -536,11 +536,11 @@ require("../backend/connection.php");
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Email</label>
-                                            <input type="text" name="emailaddr" class="form-control" required>
+                                            <input type="email" name="emailaddr" class="form-control" required>
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Password</label>
-                                            <input type="password" name="pwd" class="form-control" required>
+                                            <input type="password" name="pwd1" class="form-control" required>
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Confirm Password</label>
@@ -548,15 +548,15 @@ require("../backend/connection.php");
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Mobile</label>
-                                            <input type="text" name="mobileno" class="form-control" required>
+                                            <input type="number" name="mobileno" class="form-control" required>
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Aadhar Number</label>
-                                            <input type="text" name="aadharno" class="form-control" required>
+                                            <input type="number" name="aadharno" class="form-control" required>
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Employee ID(Don't Edit)</label>
-                                            <input type="text" name="empid" value="<?php echo rand(1000,9999);?>"  class="form-control" required>
+                                            <input type="number" name="empid" value="<?php echo rand(1000,9999);?>"  class="form-control" required>
                                           </div>
                                           <div class="col-md-4">
                                             <label class="form-label">Date of birth</label>
