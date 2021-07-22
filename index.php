@@ -36,12 +36,6 @@ mysqli_query($conn,$add_visitor);
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NewBiz - v4.0.1
-  * Template URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
