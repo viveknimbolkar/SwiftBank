@@ -14,7 +14,7 @@ if (isset($_POST['transferfund'])) {
     $transfer_amount = mysqli_real_escape_string($conn,$_POST['amount']);
 
 //search for account existance and balance
-    $search = "SELECT `account_no` FROM `customerdata` WHERE account_no='$from_account_num' LIMIT 1";
+    $search = "SELECT * FROM `customerdata` WHERE account_no='$from_account_num' LIMIT 1";
 
     $search_result = mysqli_query($conn,$search);
 

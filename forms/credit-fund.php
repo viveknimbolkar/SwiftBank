@@ -12,6 +12,7 @@ require_once("../backend/connection.php");
 if (isset($_POST['creditfund'])) {
 
     $account_no = mysqli_real_escape_string($conn,$_POST['acnum']);
+    $amount = mysqli_real_escape_string($conn,$_POST['amount']);
    //find the customer
     $sql_query = "SELECT * FROM customerdata WHERE account_no='$account_no' LIMIT 1";
 
@@ -26,20 +27,19 @@ if (isset($_POST['creditfund'])) {
         #echo "$result[balance]";
         #echo "<br>";
 
-        $amount = $_POST['amount'] + $result['balance'];
+        $total_amount = $amount + $result['balance'];
         
         //update balance
-        $query = "UPDATE `customerdata` SET balance='$amount' WHERE account_no='$account_no' LIMIT 1";
+        $query = "UPDATE `customerdata` SET balance='$total_amount' WHERE account_no='$account_no' LIMIT 1";
     
         #echo $query;
     
         $result = mysqli_query($conn,$query);
 
-        echo "<script> 
-                alert('Fund Credited' Successfuly!);
-                window.location.href='../employee/employee-dashboard.php'; 
-                
-            </script>";
+        if ($result) {
+            echo "<script> alert('Fund Credited Successfuly!');window.location.href='../employee/employee-dashboard.php'; </script>";
+        }
+
 
     }else{
         //if user not found

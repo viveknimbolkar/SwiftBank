@@ -11,10 +11,11 @@ require_once("../backend/connection.php");
 
 if (isset($_POST['debitfund'])) {
 
-    $account_no = mysqli_real_escape_string($conn,$_POST['acnum']);
+    $account_no = mysqli_real_escape_string($conn,$_POST['account_num']);
+    $amount = mysqli_real_escape_string($conn,$_POST['debit_amount']);
 
    //find the customer
-    $sql_query = "SELECT `account_no` FROM customerdata WHERE account_no='$account_no' LIMIT 1";
+    $sql_query = "SELECT balance FROM customerdata WHERE account_no='$account_no' LIMIT 1";
 
     #echo $sql_query;
     #echo "<br>";
@@ -24,10 +25,10 @@ if (isset($_POST['debitfund'])) {
     //if found then get balance
     if ($result = mysqli_fetch_assoc($find)) {
 
-        $amount = $result['balance'] - $_POST['amount'];
+        $total_amount = $result['balance'] - $amount;
         
         //update balance
-        $query = "UPDATE `customerdata` SET balance='$amount' WHERE account_no='$account_no' LIMIT 1";
+        $query = "UPDATE `customerdata` SET balance='$total_amount' WHERE account_no='$account_no' LIMIT 1";
     
         $result = mysqli_query($conn,$query);
 

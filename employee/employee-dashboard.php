@@ -378,7 +378,7 @@
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
-                                      <input type="submit" name="creditfund" class="btn btn-primary btn-lg" value="Credit fund">
+                                      <input type="submit" name="creditfund" class="btn btn-primary btn-lg" value="Credit Funds">
                                   </div>
                             </div>                              
                           </form>
@@ -393,13 +393,13 @@
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Account No.</span>
-                                            <input type="number" name="acnum" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="account_num" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
                                       <div class="input-group input-group-lg">
                                             <span class="input-group-text" id="inputGroup-sizing-lg">Amount (Rs.)</span>
-                                            <input type="number" name="amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
+                                            <input type="number" name="debit_amount" class="form-control" aria-label="Sizing example input" required aria-describedby="inputGroup-sizing-lg">
                                       </div>
                                   </div>
                                   <div class="col-sm-4">
