@@ -32,9 +32,11 @@
         $timestamp = date("Y-m-d h:i:s");
         #echo $timestamp;
         
-        $query = "INSERT INTO `customerdata` (`first_name`, `fathername`, `last_name`, `email_address`, `mobile_no`, `account_no`, `aadhar_no`, `address`, `city`, `taluka`, `district`, `state`, `dob`, `balance`, `pincode`,`gender`, `timestamp`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$mobile', '$account_no', '$aadhar_no', '$address', '$city', '$taluka', '$district', '$state', '$dob', '$balance', '$pincode', '$gender', '$timestamp')";
+        $query = "INSERT INTO `customerdata` (`first_name`, `father_name`, `last_name`, `email_address`, `mobile_no`, `account_no`, `aadhar_no`, `address`, `city`, `taluka`, `district`, `state`, `dob`, `balance`, `pincode`,`gender`, `timestamp`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$mobile', '$account_no', '$aadhar_no', '$address', '$city', '$taluka', '$district', '$state', '$dob', '$balance', '$pincode', '$gender', '$timestamp')";
         
        $result = mysqli_query($conn,$query);
+
+       echo mysqli_error($conn);
 
        #echo mysqli_error($conn);
 
@@ -156,7 +158,7 @@
         }else{
 
             echo "<script> alert('Record is not added! Try again'); </script>";
-            redirectPage(); #redirect to the respected user dashboard
+            //redirectPage(); #redirect to the respected user dashboard
 
         }#end of success query completion
 

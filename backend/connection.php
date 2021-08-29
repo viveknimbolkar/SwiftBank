@@ -11,8 +11,4 @@
         die("Connection Error!");
     }
 
-
-
-
-
 ?>
