@@ -212,9 +212,7 @@
       $find_female = "SELECT COUNT(ID) AS female_gender FROM customerdata WHERE gender='Female'";
       $female_result = mysqli_query($conn,$find_female);
       $female_data = mysqli_fetch_assoc($female_result);
-
-
-
+      
       //Get transaction history of last 6 days======================================================
       #This blocks are use to subtract days from current days. Using this we will get past 6 days.NULL MEANS CURRENT DATE
 //Subtract 1 day
@@ -297,33 +295,22 @@ $result = mysqli_query($conn,$query);
 $row = mysqli_fetch_assoc($result);
 $past_six_day_amount = $row['trans_amount'];
 #echo $past_six_day_amount."<br>";
-
-      
 ?>
-
-    
-
-    
     <!----Google chart for gender analysis-->
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Male',  <?php echo $male_data['male_gender']; ?>],
           ['Female',<?php echo $female_data['female_gender']; ?>]
-          
         ]);
-
         var options = {
           title: 'Customer Gender'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
     </script>
@@ -342,16 +329,13 @@ $past_six_day_amount = $row['trans_amount'];
           ['<?php echo $past_five_day ?>', <?php echo $past_five_day_amount; ?>],
           ['<?php echo $past_six_day ?>', <?php echo $past_six_day_amount; ?>]
         ]);
-
         var options = {
           chart: {
             title: 'Past 7 Days Transaction History',
             subtitle: 'Maximum transaction per day',
           }
         };
-
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 </script>

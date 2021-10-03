@@ -1,10 +1,6 @@
 <?php
-
 session_start();
 $_SESSION['step_1'] = TRUE;
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

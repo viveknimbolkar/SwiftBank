@@ -1,10 +1,6 @@
 <?php
-
 session_start();
 $_SESSION['step_1'] = TRUE;
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +46,6 @@ $_SESSION['step_1'] = TRUE;
             <div class="col-sm-4"></div>
         </div>
     </div>
-    
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     
 </body>

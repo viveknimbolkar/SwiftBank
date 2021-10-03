@@ -5,14 +5,11 @@ if ($_SESSION['managername']) {
   header("Location: ../manager/manager-dashboard.php");
 }
 if (isset($_SESSION['empfname'])) {
-
   echo "<script>
             alert('Employee is already Logged In!');
             window.location.href='../index.php';   
         </script>";
-  
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

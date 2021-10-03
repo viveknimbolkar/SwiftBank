@@ -1,7 +1,5 @@
 <?php
-  
   session_start();
-
   if (!isset($_SESSION['empfname'])) {
     header("Location: ../index.php");
   }
@@ -117,7 +115,6 @@
                                   </div>
                             </form>  
                             <?php
-                            
                                         if (isset($_POST['findcustomer'])) {
                                          
                                           //get acc no
@@ -202,7 +199,6 @@
                                     }
                                   }
                                     ?>
-
               </div>
             
               <!--Add the customer-->
@@ -332,30 +328,18 @@
                      </form>  
                      <?php
                           if (isset($_POST['removeC'])) {
-
-                            
-
                               //first find the customer
                               $search_customer = "SELECT * FROM `customerdata` WHERE account_no='$_POST[accnum]' LIMIT 1";
-                              
                               $find = mysqli_query($conn,$search_customer);
-                              
                               if ($row = mysqli_fetch_assoc($find)) {
                                 #echo "$row[account_no]";
                                 $query = "DELETE FROM `customerdata` WHERE account_no='$_POST[accnum]' LIMIT 1";
-                                
                                 $result = mysqli_query($conn,$query);
                                 #echo "Deleted!";
-                                
                                 echo "<script>alert('Customer Deleted Successfully!');</script>";
-
                               }else{
                                 echo "<script>alert('Customer Not Found!');</script>";
                               }
-                               
-
-                               
-                                
                           }
                       ?>
             </div>
@@ -443,7 +427,6 @@
                     </form>
               </div>
             </div>
-
       </div>
     </section>
 
@@ -466,11 +449,8 @@
         function printDiv(printCustomerDetail) {
             var printContents = document.getElementById("printCustomerDetail").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
     </script>

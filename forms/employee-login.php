@@ -9,11 +9,8 @@ if (isset($_SESSION['managername'])) {
 	echo "<script>alert('Manager is already Logged In!');
 			window.location.href='../index.php';    
 		  </script>";
-	
 }
-
 ?>
-
 <html>
 	<head>
 		<title>Swift | Employee Login</title>

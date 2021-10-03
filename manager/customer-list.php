@@ -1,13 +1,7 @@
 <?php
-
 require_once("../backend/helpme.php");
 checkLogin();
-
-  require_once("../backend/connection.php");
-  /*session_start();
-  if (!(isset($_SESSION['managername']) OR isset($_SESSION['empfname']) ) ) {
-    header("Location: ../index.php");
-  }*/
+require_once("../backend/connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +10,6 @@ checkLogin();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
-
   <!-- Favicons -->
   <link href="../assets/img/favicon.svg" rel="icon">
 
@@ -109,10 +101,6 @@ checkLogin();
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                  
-                    
-                    
-                    
                       <tr>
                         <th scope="row"><?php echo $i++ ;  ?></th>
                         <td><?php echo "$row[first_name] $row[father_name] $row[last_name]" ?></td>
@@ -127,17 +115,13 @@ checkLogin();
                         <td><?php echo "$row[district]" ?></td>
                         <td><?php echo "$row[state]" ?></td>
                       </tr><br>
-                    
-                    
                   <?php
                 }
                 ?>
                 </tbody>
-                  </table>
-                      
+                  </table>   
         </div>
     </div>
-
      <!-- Vendor JS Files -->
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -151,11 +135,8 @@ checkLogin();
         function printDiv(PrintData) {
             var printContents = document.getElementById("PrintData").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
       </script>

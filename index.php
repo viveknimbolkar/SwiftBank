@@ -1,13 +1,8 @@
 <?php
-
 require("backend/connection.php");
-
 //Add the user details to the database
 $add_visitor = "INSERT INTO `visitors_detail` (`user_ip`, `user_agent`) VALUES ('$_SERVER[REMOTE_ADDR]', '$_SERVER[HTTP_USER_AGENT]')";
-
 mysqli_query($conn,$add_visitor);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

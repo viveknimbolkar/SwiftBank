@@ -1,42 +1,31 @@
 <?php
-
 session_start();
 //check if he is directly accessing this page or not
 if (!(isset($_SESSION['otp_of_manager']))) {
-    
     header("location: ../index.php");
 }
-
 require("../backend/connection.php");
 
 if (isset($_POST['submit'])) {
-   
     $pwd1 = mysqli_real_escape_string($conn,$_POST['pwd1']);
     $pwd2 = mysqli_real_escape_string($conn,$_POST['pwd2']);
-
     $check_pwd = strcmp($pwd1,$pwd2);
 
     if ($check_pwd == 0) {
         //if password match
-        #echo $select_table;
         $manager_mail = $_SESSION['otp_of_manager'];
-        #echo $emp_mail;
-        
         $sql = "UPDATE manager SET pass='$pwd2' WHERE email='$manager_mail' LIMIT 1";
         $change_pwd = mysqli_query($conn,$sql);
 
         if ($change_pwd) {
             // if pwd change successfully.
             echo "<script>alert('Password Has Been Changed Successfuly!'); </script>";
-            
             session_destroy();
             header("location: ../forms/manager-login.php");
         }else{
-
             echo "<script>alert('Something went wrong! Please try again.'); </script>";
         }
     }else{
-
         //if password is not matched
         echo "<script>alert('Password dosen't match!'); </script>";
     }
@@ -92,8 +81,6 @@ if (isset($_POST['submit'])) {
             <div class="col-sm-4"></div>
         </div>
     </div>
-    
-
     <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

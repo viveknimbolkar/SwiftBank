@@ -1,10 +1,7 @@
 <?php
-
 require_once("../backend/helpme.php");
 checkLogin();
-
-  require_once("../backend/connection.php");
-  
+require_once("../backend/connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +10,6 @@ checkLogin();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
     <link href="../assets/img/favicon.svg" rel="icon">
     
   <!-- Vendor CSS Files -->
@@ -105,14 +101,11 @@ checkLogin();
                         <td><?php echo "$row[district]" ?></td>
                         <td><?php echo "$row[state]" ?></td>
                       </tr><br>
-                    
-                    
                   <?php
                 }
                 ?>
                 </tbody>
                   </table>
-                      
         </div>
     </div>
 

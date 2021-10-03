@@ -10,39 +10,29 @@ if (!(isset($_SESSION['otp_of_employee']))) {
 require("../backend/connection.php");
 
 if (isset($_POST['submit'])) {
-   
     $pwd1 = mysqli_real_escape_string($conn,$_POST['pwd1']);
     $pwd2 = mysqli_real_escape_string($conn,$_POST['pwd2']);
-
     $check_pwd = strcmp($pwd1,$pwd2);
 
     if ($check_pwd == 0) {
         //if password match
-        #echo $select_table;
         $emp_mail = $_SESSION['otp_of_employee'];
-        #echo $emp_mail;
-        
         $sql = "UPDATE employeedata SET pass='$pwd2' WHERE email_address='$emp_mail' LIMIT 1";
         $change_pwd = mysqli_query($conn,$sql);
 
         if ($change_pwd) {
             // if pwd change successfully.
-            echo "<script>alert('Password Has Been Changed Successfuly!'); </script>";
-            
+            echo "<script>alert('Password Has Been Changed Successfuly!'); </script>";  
             session_destroy();
             header("location: ../forms/employee-login.php");
         }else{
-
             echo "<script>alert('Something went wrong! Please try again.'); </script>";
         }
     }else{
-
         //if password is not matched
         echo "<script>alert('Password dosen't match!'); </script>";
     }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +55,6 @@ if (isset($_POST['submit'])) {
             top: 40%;
             left: 35%;
             transform: translateY(-50%);
-  
         }
 
     </style>

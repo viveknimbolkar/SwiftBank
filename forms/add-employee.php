@@ -1,15 +1,12 @@
 <?php
-
     session_start();
      
     if (!isset($_SESSION['managername'])) {
         header("Location: ../index.php");
     }
-
     require("../backend/connection.php");
 
     if (isset($_POST['addemp'])) {
-
         //store all the variables securely
         $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
         $fathername = mysqli_real_escape_string($conn,$_POST['fathername']);
@@ -36,23 +33,15 @@
                     window.location.href='../manager/manager-dashboard.php';
                   </script>";
         }else {
-            
         //if password matched successfuly then create a secure password hash and insert data into database
-
         $password = password_hash($cpass,PASSWORD_BCRYPT);
-
         //current time
         date_default_timezone_set("Asia/Kolkata");
         $current_time = date('Y-m-d h:i:s');
-
         $query = "INSERT INTO `employeedata` (`first_name`, `father_name`, `last_name`, `email_address`, `pass`, `mobile_no`, `aadhar_no`, `emp_id`, `dob`, `qualification`, `address`, `city`, `taluka`, `district`, `state`,`time`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$password', '$mobile', '$aadhar_no', '$employee_id', '$dob', '$qualification', '$address', '$city', '$taluka', '$district', '$state','$current_time')";
-        
         $result = mysqli_query($conn,$query);
-
         if ($result) {
-           
            ?>
-           
              <!--html is here -->
              <!DOCTYPE html>
 <html lang="en">
@@ -138,11 +127,8 @@
         function printDiv(printID) {
             var printContents = document.getElementById("printID").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
     </script>
@@ -150,15 +136,10 @@
 </html>
 
            <?php
-        
         }else{
             echo "<script> alert('Something Went Wrong! Please Try Again.'); </script>";
         }#end of conenction (result)  error
-
         #echo mysqli_error($conn);
-    
     }#end of password check
-
     }#end of isset
-
 ?>

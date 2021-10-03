@@ -1,13 +1,10 @@
 <?php
-
     require_once("../backend/helpme.php");
     checkLogin();
-    
     require_once("../backend/connection.php");
 
     #customer added by employee
     if (isset($_POST['addcustomer'])) {
-
         //get the post values in secure format
         $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
         $fathername = mysqli_real_escape_string($conn,$_POST['fathername']);
@@ -31,18 +28,13 @@
         date_default_timezone_set('Asia/Kolkata');
         $timestamp = date("Y-m-d h:i:s");
         #echo $timestamp;
-        
         $query = "INSERT INTO `customerdata` (`first_name`, `father_name`, `last_name`, `email_address`, `mobile_no`, `account_no`, `aadhar_no`, `address`, `city`, `taluka`, `district`, `state`, `dob`, `balance`, `pincode`,`gender`, `timestamp`) VALUES ('$firstname', '$fathername', '$lastname', '$email', '$mobile', '$account_no', '$aadhar_no', '$address', '$city', '$taluka', '$district', '$state', '$dob', '$balance', '$pincode', '$gender', '$timestamp')";
-        
-       $result = mysqli_query($conn,$query);
-
-       echo mysqli_error($conn);
-
-       #echo mysqli_error($conn);
+        $result = mysqli_query($conn,$query);
+        #echo mysqli_error($conn);
+        #echo mysqli_error($conn);
 
        //if the data inserted successfully
         if ($result) {
-
              ?>
                <!--html is here -->
                <!DOCTYPE html>
@@ -118,14 +110,10 @@
     <!----Options for user--->
     <center id="options">
             <button class="btn btn-primary" onclick="printDiv()">Print</button>
-
             <?php
             if (isset($_SESSION['empfname'])) {
                 echo "<a href='../employee/employee-dashboard.php' class='btn btn-outline-primary'>Home</a>";
-                
             }
-            
-
             if (isset($_SESSION['managername'])) {
                 echo "<a href='../manager/manager-dashboard.php' class='btn btn-outline-primary'>Home</a>";
              }
@@ -139,29 +127,17 @@
         function printDiv(printID) {
             var printContents = document.getElementById("printID").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
     </script>
 </body>
 </html>
-
-
-
-               
              <?php
-            
         }else{
-
             echo "<script> alert('Record is not added! Try again'); </script>";
             //redirectPage(); #redirect to the respected user dashboard
-
         }#end of success query completion
-
     }#end of addcustomer submit
-
 ?>

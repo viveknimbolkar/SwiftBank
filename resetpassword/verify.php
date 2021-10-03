@@ -1,49 +1,33 @@
 <?php
 
 session_start();
-
 if (!isset($_SESSION['step_1'])) {
-
     header("location: ../index.php");
 }
-
 require("../backend/connection.php");
 
 if (isset($_POST['send'])) {
-   
     $user_mail = mysqli_real_escape_string($conn,$_POST['mailaddress']);
-
     //check if employee's email exists
     $sql = "SELECT email_address FROM `employeedata` WHERE email_address='$user_mail' LIMIT 1";
-    
     $find_employee = mysqli_query($conn,$sql);
 
     //if upper two query are successfully executed then switch to the respected user
     if ($find_employee) {
-
          #echo mysqli_error($conn);
         $result = mysqli_fetch_assoc($find_employee);
-
         //if employee's email found then send him/her a mail otp
         if ($result['email_address'] == $user_mail) {
             #echo "email found";
-           
             $find_already = "DELETE FROM user_otp WHERE email_address='$user_mail'";
             $run = mysqli_query($conn,$find_already);
-
             //create a random 4 digit otp
-            $OTP = rand(1000,9999);
-            #echo "<br>".$OTP." is your otp";
-            
+            $OTP = rand(1000,9999);    
             //Now let's encrypt the OTP
             $OTP_hash = password_hash($OTP,PASSWORD_BCRYPT);
-            
             //get time in bytes
             $current_time = time();
-            #echo $current_time;
             $otp_expire_time = $current_time + 300; #expire after 1min
-            
-           
             //add this hash to the database
             $sql = "INSERT INTO `user_otp` (`email_address`, `otp`,`otp_expire_time`) VALUES ('$user_mail', '$OTP_hash','$otp_expire_time')";
             $add_hash = mysqli_query($conn,$sql);
@@ -51,12 +35,9 @@ if (isset($_POST['send'])) {
             #echo mysqli_error($conn);
             if ($add_hash) {
                 #echo "added to the db";
-
-               
                 $_SESSION['otp_of_employee'] = $user_mail;
                 
             }else{
-
                 echo "<script>alert('Something Went Wrong.Please try again later!');    
                 window.location.href='reset-password.php';</script>";
             }
@@ -66,7 +47,6 @@ if (isset($_POST['send'])) {
             $subject = "Password Reset Request For SWIFT BANK Account";
             $message = $OTP." is your OTP. Don't share this OTP with anyone. We have received your password reset request.[  $OTP ] Enter this OTP and reset your password. Thank you! Team Swift Bank.";
             $header = "From: viveknimbolkar.educationhost.cloud";
-
             //now send a mail
             $send_mail_check = mail($to,$subject,$message,$header);
 
@@ -75,7 +55,6 @@ if (isset($_POST['send'])) {
             }else{
                 "<script>alert('Something went wrong! Please try again.');window.location.href='reset-password.php'; </script>";
             }
-
         }else{
             #if email is not found in both of the database then alert user
             echo "<script>alert('Email Not Found! Please enter correct email.');window.location.href='reset-password.php'; </script>";
@@ -84,14 +63,10 @@ if (isset($_POST['send'])) {
         #if there was a problem in connection
        echo "<script>alert('Something Went Wrong.Please try again later!'); window.location.href='reset-password.php'; </script>";
     }
-   
-    
 }#end of send isset
 
 if (isset($_POST['verifyOTP'])) {
-
     $userotp = $_POST['enteredotp'];
-
     //SELECT THE EMAIL ADDRESS AND OTP
     $sql = "SELECT * FROM user_otp WHERE email_address='$_SESSION[otp_of_employee]' LIMIT 1";
     $find_otp = mysqli_query($conn,$sql);
@@ -99,30 +74,23 @@ if (isset($_POST['verifyOTP'])) {
 
     //if email is found
     if ($otp_result['email_address'] == $_SESSION['otp_of_employee']) {
-        #echo "address found";
-
         $cur_time = time();
         #echo $cur_time;
         //if otp is expired after 1min
         if ($otp_result['otp_expire_time'] < $cur_time ) {
-
             echo "<script>alert('This OTP is expired!'); </script>";
-
         }else{
                 //if otp is not expired check the otp hash
             $check_otp = password_verify($userotp,$otp_result['otp']);
-
             if ($check_otp) {
                 //if otp is match
                 #echo "password matched";
                 header("location: confirm-password.php");
-
             }else{
                 //if otp is not match
                 echo "<script>alert('Incorrect OTP!'); </script>";
             }
         }
-
     }else{
         echo "<script>alert('Please enter correct email address!'); </script>";
     }

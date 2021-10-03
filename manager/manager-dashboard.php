@@ -1,16 +1,7 @@
 <?php
-/*
-session_start();
-
-if (!isset($_SESSION['managername'])) {
-  header("location: ../forms/manager-login.php");
-}*/
-
 require_once("../backend/helpme.php");
 checkLogin();
-
 require_once("../backend/connection.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -693,11 +684,8 @@ require_once("../backend/connection.php");
         function printDiv(printInfo) {
             var printContents = document.getElementById("printInfo").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
     </script>
@@ -706,11 +694,8 @@ require_once("../backend/connection.php");
         function printDiv(printCustomerDetail) {
             var printContents = document.getElementById("printCustomerDetail").innerHTML;
             var originalContents = document.body.innerHTML;
-
             document.body.innerHTML = printContents;
-
             window.print();
-
             document.body.innerHTML = originalContents;
           }
     </script>
