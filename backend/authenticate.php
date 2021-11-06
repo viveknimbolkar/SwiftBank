@@ -4,7 +4,7 @@ require_once("connection.php");
 if (isset($_POST['managerlogin'])) {
 
       //verify the bot or not by using google captcha
-      $secret = '6LdJ7KsaAAAAAAmsa2JFRrUcwFLp91SyucVvxzB3';
+      $secret = 'SECRET_KEY';
       $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
       $responseData = json_decode($verifyResponse);
 
