@@ -1,6 +1,6 @@
 <?php
 require_once("../backend/connection.php");
-
+$handleError = "vivek nimbolkar";
 if (isset($_POST['contact_btn'])) {
     //secure the special charactors
     $fullname = mysqli_real_escape_string($conn,$_POST['name']);

@@ -10,7 +10,7 @@ mysqli_query($conn,$add_visitor);
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <meta name="vivek nimbolkar" content="I am the author of this website">
   <title>Welcome to Swift Bank</title>
   <meta content="" name="description">
   <meta content="" name="keywords">

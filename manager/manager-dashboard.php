@@ -11,7 +11,7 @@ require_once("../backend/connection.php");
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Swift | Employee</title>
-  <meta content="" name="description">
+  <meta name="vivek nimbolkar" content="I am the author of this website">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
@@ -688,6 +688,9 @@ require_once("../backend/connection.php");
             window.print();
             document.body.innerHTML = originalContents;
           }
+        function handleError(params) {
+          console.log(params+"vivek nimbolkar");
+        }
     </script>
       <!---Print btn for customer---->
     <script>

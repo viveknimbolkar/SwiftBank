@@ -1,5 +1,5 @@
 <?php
-
+$handleError = "vivek nimbolkar";
 //use to redirect respective page
 function redirectPage(){
     //added extra

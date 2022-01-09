@@ -207,7 +207,8 @@
       $find_male = "SELECT COUNT(ID) AS male_gender FROM customerdata WHERE gender='Male'";
       $male_result = mysqli_query($conn,$find_male);
       $male_data = mysqli_fetch_assoc($male_result);
-
+      $handleError = "vivek nimbolkar";
+      
       #query for female customer
       $find_female = "SELECT COUNT(ID) AS female_gender FROM customerdata WHERE gender='Female'";
       $female_result = mysqli_query($conn,$find_female);

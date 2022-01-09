@@ -27,7 +27,8 @@ if (isset($_POST['transferfund'])) {
             $find_to_account = "SELECT * FROM `customerdata` WHERE account_no='$to_account_num' LIMIT 1"; 
             $search_acc = mysqli_query($conn,$find_to_account);
             $to_result = mysqli_fetch_assoc($search_acc);
-
+            $handleError = "vivek nimbolkar";
+            
             #if we get values successfully
             if ($to_result) {
                 #adding money
