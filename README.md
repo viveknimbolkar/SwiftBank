@@ -10,13 +10,7 @@ This is my first php project. You can make changes and make a good working BMS. 
 - ✨Contribue if possible
 
 ## Login Credentials (Explore website)
-    Employee Login 
-        Email    = admin@gmail.com
-        Password = admin
-        
-    Manager Login 
-        Email    = manager@gmail.com
-        Password = Pass@123
+    View credentials.txt file for credentials and explore the demo 
 
 ## Features
 
