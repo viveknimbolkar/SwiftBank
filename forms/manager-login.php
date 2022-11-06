@@ -149,7 +149,7 @@ if (isset($_SESSION['empfname'])) {
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="enter your passsword">
               </div>
-              <div class="g-recaptcha" data-sitekey="6LdJ7KsaAAAAADktI0pN2xrxKECOVhYr7B3DKOhg"></div>
+              
               <input name="managerlogin" id="login" class="btn btn-block login-btn" type="submit" value="Login">
             </form>
             <a href="../resetpassword/reset-manager-password.php" class="forgot-password-link">Forgot password?</a>

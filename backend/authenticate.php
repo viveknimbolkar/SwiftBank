@@ -4,12 +4,12 @@ require_once("connection.php");
 if (isset($_POST['managerlogin'])) {
 
       //verify the bot or not by using google captcha
-      $secret = 'SECRET_KEY';
-      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-      $responseData = json_decode($verifyResponse);
+      // $secret = 'SECRET_KEY';
+      // $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+      // $responseData = json_decode($verifyResponse);
 
       //if user is not a robot
-      if($responseData->success){
+      // if($responseData->success){
         $email = mysqli_real_escape_string($conn,$_POST['email']);
         $password = mysqli_real_escape_string($conn,$_POST['password']);
         $query = "SELECT * FROM `manager` WHERE email='$email' LIMIT 1";
@@ -30,19 +30,19 @@ if (isset($_POST['managerlogin'])) {
           }else 
             echo "<script> alert('Wrong Credentials!'); window.location.href='../forms/manager-login.php';</script>"; 
         }#end of connection check
-      }else{
-        //if user is a robot
-        echo "<script> alert('You are robot. Stop doing this!'); </script>";
-      }
+      // }else{
+      //   //if user is a robot
+      //   echo "<script> alert('You are robot. Stop doing this!'); </script>";
+      // }
 }
   #authenticate employee
 if (isset($_POST['emplogin'])) { 
     //verify the bot using google captcha
-    $secret = '6LdJ7KsaAAAAAAmsa2JFRrUcwFLp91SyucVvxzB3';
-    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-    $responseData = json_decode($verifyResponse);
+    // $secret = '6LdJ7KsaAAAAAAmsa2JFRrUcwFLp91SyucVvxzB3';
+    // $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+    // $responseData = json_decode($verifyResponse);
     
-    if($responseData->success){
+    // if($responseData->success){
       //if user is not a bot
       $email = mysqli_real_escape_string($conn,$_POST['email']);
       $password = mysqli_real_escape_string($conn,$_POST['pwd']);
@@ -67,8 +67,8 @@ if (isset($_POST['emplogin'])) {
         }else 
           echo "<script> alert('Wrong Credentials!'); window.location.href='../forms/employee-login.php';</script>"; 
       }#end of connection check
-    }else
-      //if user is a robot
-      echo "<script> alert('You are robot. Stop doing this!'); window.location.href='../forms/employee-login.php'; </script>";
+    // }else
+    //   //if user is a robot
+    //   echo "<script> alert('You are robot. Stop doing this!'); window.location.href='../forms/employee-login.php'; </script>";
 }
 ?>

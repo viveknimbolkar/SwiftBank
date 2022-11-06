@@ -9,6 +9,15 @@ This is my first php project. You can make changes and make a good working BMS. 
 - See more on my youtube channel
 - ✨Contribue if possible
 
+## Login Credentials (Explore website)
+    Employee Login 
+        Email    = admin@gmail.com
+        Password = admin
+        
+    Manager Login 
+        Email    = manager@gmail.com
+        Password = Pass@123
+
 ## Features
 
 - Employee can add new customers
